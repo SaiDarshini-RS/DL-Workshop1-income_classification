@@ -1,48 +1,81 @@
-Topics Covered
-1. Introduction to Deep Learning
+**DEEP-LEARNING-WORKSHOP**
+**AIM:**
+To build, train, and evaluate a deep learning model using PyTorch for tabular data that contains both categorical and continuous features, in order to classify income labels.
 
-What deep learning is and how it differs from traditional machine learning.
+**PROCEDURE:**
+***1. Import Required Libraries:***
+Import PyTorch for model building.
 
-The role of neural networks in modern AI.
+Import NumPy, Pandas for data handling.
 
-Real-world applications (vision, NLP, reinforcement learning, etc.).
+Import Matplotlib for plotting.
 
-2. Neural Network Fundamentals
+Import shuffle from scikit-learn for randomizing rows.
 
-Biological inspiration: neurons and synapses.
+***2. Load and Explore Dataset:***
+Load the dataset (income.csv) using Pandas.
 
-Artificial neurons: perceptron and activation functions (Sigmoid, ReLU, Tanh, etc.).
+Print dataset size, column names, and class distribution of the target label.
 
-Network architectures: layers, weights, and biases.
+***3. Identify Feature Types:***
+Define categorical columns (e.g., sex, education, occupation).
 
-3. Mathematics of Deep Learning
+Define continuous columns (e.g., age, hours-per-week).
 
-Linear algebra concepts: vectors, matrices, dot products.
+Define target column (label).
 
-Forward propagation: how data flows through the network.
+***4. Preprocess Data:***
+Convert categorical columns into category type.
+Shuffle the dataset and reset indices.
 
-Loss functions: measuring error (MSE, Cross-Entropy, etc.).
+Get the number of categories for each categorical column.
 
-4. Learning and Optimization
+***5. Convert Data into Tensors:***
+Convert categorical values into category codes.
 
-Gradient Descent and Backpropagation explained step by step.
+Convert continuous values into float tensors.
 
-Role of derivatives in updating weights.
+Convert labels into long tensors.
 
-Optimizers (SGD, Momentum, Adam).
+Split dataset into training and testing sets.
 
-5. Regularization and Generalization
+***6. Model Compilation***
+Loss Function: CrossEntropyLoss to measure prediction error for classification.
 
-Overfitting vs. underfitting.
+Optimizer: Adam with learning rate 0.001 for efficient parameter updates.
 
-Techniques: dropout, weight decay, batch normalization.
+Random Seed: Set to ensure reproducibility of results.
 
-6. Building Blocks of Deep Learning
+***7. Model Training***
+The training loop runs for 300 epochs.
 
-Feedforward networks.
+Each epoch involves:
 
-Convolutional Neural Networks (CNNs).
+Forward pass: the model generates predictions for the training data.
 
-Recurrent Neural Networks (RNNs).
+Loss computation: difference between predictions and true labels is calculated.
 
-Modern architectures overview (Transformers, attention mechanism).
+Backpropagation: gradients are computed.
+
+Weight updates: optimizer adjusts model parameters to reduce loss.
+
+Training losses are recorded after each epoch to monitor model learning.
+
+Intermediate losses are printed every 25 epochs for progress tracking.
+
+***8. Training Loss Visualization***
+A loss curve is plotted using Matplotlib to visualize how the loss decreases over epochs.
+
+The curve provides insight into model convergence and helps identify issues such as overfitting or underfitting.
+
+***9. Model Evaluation***
+The trained model is switched to evaluation mode (disabling dropout and other training-specific behaviors).
+
+Test data is passed through the model to generate predictions.
+
+Evaluation metrics computed:
+
+Cross-Entropy Loss on test data.
+
+Accuracy: percentage of correct predictions compared to actual labels.
+
